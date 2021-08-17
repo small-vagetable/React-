@@ -1,0 +1,23 @@
+.admin-logo {
+  height: 6.66666667rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.admin-logo img {
+  height: 3.33333333rem;
+  border-radius: 10px;
+}
+.admin-logo span {
+  font-size: 1.83333333rem;
+  color: #fff;
+  opacity: 0;
+  display: none;
+  transition: all linear 0.5;
+}
+.admin-logo span.active {
+  display: block;
+  box-sizing: content-box;
+  opacity: 1;
+}

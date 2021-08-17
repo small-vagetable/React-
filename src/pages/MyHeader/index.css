@@ -1,0 +1,91 @@
+.admin-header {
+  height: 100%;
+  background-color: #fff;
+  z-index: 10;
+}
+.admin-header .header-top {
+  height: 50%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  border-bottom: 1px solid green;
+  box-sizing: border-box;
+  padding: 5px 30px;
+}
+.admin-header .header-top .header-username {
+  height: 100%;
+  margin: 0 10px 5px;
+  font-size: 1.66666667rem;
+  line-height: 40px;
+  box-sizing: border-box;
+}
+.admin-header .header-bottom {
+  height: 50%;
+  display: flex;
+  align-items: center;
+}
+.admin-header .header-bottom .header-bottom-left {
+  width: 75%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  text-align: center;
+}
+.admin-header .header-bottom .header-bottom-left .ant-tabs {
+  height: 40px;
+  overflow: visible;
+}
+.admin-header .header-bottom .header-bottom-left .ant-tabs .ant-tabs-nav .ant-tabs-nav-wrap {
+  overflow: visible;
+  height: 40px;
+}
+.admin-header .header-bottom .header-bottom-left .ant-tabs .ant-tabs-tab {
+  background-color: white;
+  height: 100%;
+}
+.admin-header .header-bottom .header-bottom-left .ant-tabs a {
+  color: black;
+}
+.admin-header .header-bottom .header-bottom-left .ant-tabs .ant-tabs-tab-active {
+  background-color: white;
+  position: relative;
+}
+.admin-header .header-bottom .header-bottom-left .ant-tabs .ant-tabs-tab-active a {
+  color: #1DA57A;
+}
+.admin-header .header-bottom .header-bottom-left .ant-tabs .ant-tabs-tab-active::after {
+  content: '';
+  position: absolute;
+  border-top: 20px solid white;
+  border-bottom: 20px solid transparent;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  top: 95%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.admin-header .header-bottom .header-bottom-right {
+  display: flex;
+  position: relative;
+  height: 100%;
+  width: 25%;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 2.5rem;
+  line-height: 20px;
+}
+.admin-header .header-bottom .header-bottom-right .wether {
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+  background: url('images/天气.png') no-repeat;
+  background-size: 100%;
+  margin: 0 10px 0 15px;
+}
+.admin-header .header-bottom .header-bottom-right .timeText {
+  font-size: 10px;
+  width: 88px;
+  line-height: 20px;
+}

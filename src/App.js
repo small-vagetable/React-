@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component,Fragment } from 'react'
+import {Route,Switch} from 'react-router-dom'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Login from './pages/Login'
+import Admin from './pages/Admin'
+import Register from './pages/Register'
+
+export default class App extends Component {
+    
+    render() {
+        return (
+            <Fragment>
+                {/* 注册路由 */}
+                <Switch>
+                    <Route path='/login' component = {Login}/>
+                    <Route path='/register' component = {Register}/>
+                    <Route path='/' component = {Admin}/>
+                    
+                </Switch>
+              
+            </Fragment>
+        )
+    }
 }
-
-export default App;

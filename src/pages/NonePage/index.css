@@ -1,0 +1,42 @@
+
+.spotlight {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 65vh;
+    background-color: white;
+  }
+  .spotlight h1 {
+    position: relative;
+    text-transform: uppercase;
+    color: #35d0a9;
+    font-size: 8rem;
+  }
+  .spotlight h1::after {
+    content: "No Page";
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: transparent;
+    background-image: linear-gradient(to right, #c23646, #294ab6, #34a3e4, #ebfc04, #6d214f, #2e86de, #4cd137, #e84118);
+    /* 背景绘制区域 当值为text 的时候 代表了文字的镂空效果，但前提是文字的颜色为透明色*/
+    background-clip: text;
+    -webkit-background-clip: text;
+    /* 利用裁切来创建可视区域， circle为原型 直径为 100 px at关键字隔开直径和圆心 
+              0%和50%代表圆形的圆心 第一个数表X轴 第二个表Y轴
+              
+               */
+    clip-path: circle(100px at 0% 50%);
+    animation: move 5s infinite;
+  }
+  @keyframes move {
+    0% {
+      clip-path: circle(100px at 0% 50%);
+    }
+    50% {
+      clip-path: circle(100px at 100% 50%);
+    }
+    100% {
+      clip-path: circle(100px at 0% 50%);
+    }
+  }
