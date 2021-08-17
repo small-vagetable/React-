@@ -1,0 +1,173 @@
+
+  /* 移动端适配 */
+    /*media query查询 1rem初始设置为12px
+dpr为2时对应750的效果图 dpr为3时对应1080的效果图
+查询区间间隔暂时设置为30px 对应3倍图时 1rem大小变化1px
+对于dpr为2的有额外百分之4.2增大的兼容*/
+
+/* 媒体查询 + cssrem */
+/* @media screen and (max-width: 320px) {
+    html,body{font-size:62.5%}
+}
+@media screen and (min-width: 321px) and (max-width:350px) {
+@media screen and (-webkit-min-device-pixel-ratio: 2){
+    html,body{font-size:71.62%}
+}
+@media screen and (-webkit-min-device-pixel-ratio: 3){
+    html,body{font-size:68.75%}
+}
+}
+@media screen and (min-width: 351px) and (max-width:380px) {
+    html,body{font-size:75%}
+}
+@media screen and (min-width: 381px) and (max-width:410px) {
+@media screen and (-webkit-min-device-pixel-ratio: 2){
+    html,body{font-size:84.64%}
+}
+@media screen and (-webkit-min-device-pixel-ratio: 3){
+    html,body{font-size:81.25%}
+}
+}
+@media screen and (min-width: 411px) and (max-width:440px) {
+@media screen and (-webkit-min-device-pixel-ratio: 2){
+    html,body{font-size:91.15%}
+}
+@media screen and (-webkit-min-device-pixel-ratio: 3){
+    html,body{font-size:87.5%}
+}
+}
+@media screen and (min-width: 441px) and (max-width:470px) {
+@media screen and (-webkit-min-device-pixel-ratio: 2){
+    html,body{font-size:97.66%}
+}
+@media screen and (-webkit-min-device-pixel-ratio: 3){
+    html,body{font-size:93.75%}
+}
+}
+@media screen and (min-width: 471px) and (max-width:500px) {
+@media screen and (-webkit-min-device-pixel-ratio: 2){
+    html,body{font-size:104.17%}
+}
+@media screen and (-webkit-min-device-pixel-ratio: 3){
+    html,body{font-size:100%}
+}
+}
+@media screen and (min-width: 501px) and (max-width:539px) {
+@media screen and (-webkit-min-device-pixel-ratio: 2){
+    html,body{font-size:110.68%}
+}
+@media screen and (-webkit-min-device-pixel-ratio: 3){
+    html,body{font-size:106.25%}
+}
+}
+@media screen and (min-width: 540px) {
+html,body{font-size: 8px}
+} */
+
+/* PC端适配 */
+
+
+/* 超大屏 1200px以上 台式电脑 布局不变 */
+
+@media screen and (min-width:1200px) { 
+  html {
+    font-size: 13px;
+  }
+}
+
+
+
+/* 大屏 1024px --- 1199px 笔记本和 常用电脑 布局一般不变 */
+
+@media screen and (min-width:1024px) and (max-width:1199px) {
+  html {
+    font-size: 12px;
+  }
+ }
+
+
+
+/* 中屏幕 平板电脑 布局改变 */
+
+@media screen and (min-width:768px) and (max-width:1023px) {
+  html {
+    font-size: 10px;
+  }
+ }
+
+
+
+/* 小屏 414px --- 767px iphine678手机 常用手机 布局改变 */
+
+@media screen and (min-width:414px) and (max-width:767px) {
+  html {
+    font-size: 10px;
+  }
+ }
+
+
+
+/* 超小屏幕 413px以下 iphone5及其以下  布局改变 */
+
+@media screen and (max-width:413px) { 
+  html {
+    font-size: 10px;
+  }
+}
+
+
+/* PC */
+/* 方法一 */
+/* 
+@media screen and (min-width: 1023px) {
+  html {
+    font-size: 10px;
+  }
+}
+@media screen and (min-width: 1100px) {
+  html {
+    font-size: 12px;
+  }
+} */
+
+/* @media (min-width: 1280px) { html{font-size: 22px;} } */
+/* @media screen and (min-width: 1280px) {
+  html {
+    font-size: 12px;
+  }
+}
+@media screen and (min-width: 1366px) {
+  html {
+    font-size: 13px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  html {
+    font-size: 14px;
+  }
+}
+@media screen and (min-width: 1680px) {
+  html {
+    font-size: 16px;
+  }
+}
+@media screen and (min-width: 1920px) {
+  html {
+    font-size: 20px;
+  }
+}
+@media screen and (min-width: 2048px) {
+  html {
+    font-size: 20px;
+  }
+}
+@media screen and (min-width: 2560px) {
+  html {
+    font-size: 26px;
+  }
+}
+@media screen and (min-width: 4096px) {
+  html {
+    font-size: 40px;
+  }
+} */

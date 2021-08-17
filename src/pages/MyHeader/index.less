@@ -1,0 +1,106 @@
+@Base :12px;
+// 头部
+.admin-header{
+    height: 100%;
+    background-color : #fff;
+    z-index: 10;
+    // 上半部分
+    .header-top{
+        height: 50%;
+        
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        border-bottom: 1px solid green;
+        box-sizing: border-box;
+        padding: 5px 30px;
+        .header-username{
+            height: 100%;
+            margin:0 10px 5px;
+            font-size:(20rem /@Base) ;
+            line-height: 40px;
+            box-sizing: border-box;
+        }
+        
+    }
+
+    // 
+    .header-bottom{
+        height: 50%;
+        display: flex;
+        align-items: center;
+        .header-bottom-left{
+            width: 75%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content:flex-start;
+            position: relative;
+            text-align: center;
+            
+            // 重写ant-tab的样式
+            .ant-tabs{
+                height: 40px;
+                overflow: visible;
+                .ant-tabs-nav{
+                    .ant-tabs-nav-wrap{
+                        overflow: visible;
+                        height: 40px;
+                    }
+                }
+                .ant-tabs-tab{
+                    background-color: white;
+                    height: 100%;
+                    
+                }
+                a{
+                    color: black;
+                }
+                .ant-tabs-tab-active{
+                    background-color: white;
+                    position: relative;
+                    a{
+                        color: #1DA57A;
+                    }
+                    // 下三角
+                    &::after{
+                        content: '';
+                        position: absolute;
+                        border-top: 20px solid white;
+                        border-bottom: 20px solid transparent;
+                        border-left: 20px solid transparent;
+                        border-right: 20px solid transparent;
+                        top: 95%;
+                        left: 50%;
+                        transform: translateX(-50%);
+
+                    }
+                }
+            }
+        }
+        .header-bottom-right{
+            display: flex;
+            position: relative;
+            height: 100%;
+            width: 25%;
+            justify-content: flex-end;
+            align-items: center;
+            padding-right: (30rem / @Base);
+            line-height: 20px;
+            .wether{
+                display: inline-block;
+                height: 40px;
+                width: 40px;
+                background: url('./images/天气.png') no-repeat ;
+                // background-position: 22% -3%;
+                background-size: 100%;
+                margin: 0 10px 0 15px;
+            }
+            .timeText{
+                font-size:10px;
+                width:88px;
+                line-height: 20px;
+            }
+        }
+    }
+}

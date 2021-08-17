@@ -1,0 +1,30 @@
+@Base : 12px;
+.admin-logo{
+    height: (80rem / @Base);
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
+
+    // background-color: aqua;
+    img{
+        height:(40rem / @Base) ;
+        border-radius: 10px;
+    }
+    span{
+        font-size:(22rem /@Base) ;
+        color: #fff;
+        
+        opacity: 0;
+        display: none;
+        transition: all linear .5;
+        &.active{
+            display: block;
+            box-sizing: content-box;
+            opacity: 1;
+            
+        }
+    }
+    
+}
