@@ -66,7 +66,7 @@ class Admin extends Component {
 
                     {/* 内容展示区域 */}
                     <Content style={{ margin: '24px 16px 0' }}>
-                        <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
+                        <div className="site-layout-background" style={{ padding: 14, minHeight: 500 }}>
                          
                             {/* 注册路由 */}
                             <Switch>
