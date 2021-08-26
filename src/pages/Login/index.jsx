@@ -4,10 +4,11 @@ import { UserOutlined, LockOutlined,EyeInvisibleOutlined, EyeTwoTone } from '@an
 
 import { Redirect } from 'react-router-dom'
 import './login.css'
-import { reqLogin } from '../../api'
-import memoryUtils from '../../utils/memoryUtils'
-import { saveUser } from '../../utils/storageUtils'
-export default class Login extends Component {
+// redux
+import {connect} from 'react-redux'
+import {login} from '../../redux/actions/user'
+ class Login extends Component {
+     
 
     onFinish =async (values) => {
         console.log('提交登录请求的ajax', values);
@@ -28,26 +29,30 @@ export default class Login extends Component {
         // }
 
         // 优化错误处理后，不需要trycatch
-        const result = await reqLogin(username,password)
-        console.log('请求成功了',result)
-        if (result.status ===0) {
-            //登录成功
-            message.success('登录成功')
-            // console.log(this.props)
+        // const result = await reqLogin(username,password)
+        // console.log('请求成功了',result)
+        // if (result.status ===0) {
+        //     //登录成功
+        //     message.success('登录成功')
+        //     // console.log(this.props)
             
-            // 添加用户信息到memoryUtils中
-            const user = result.data;//获取用户信息
-            memoryUtils.user = user;
-            saveUser(user);
-            console.log(memoryUtils.user)
+        //     // 添加用户信息到memoryUtils中
+        //     const user = result.data;//获取用户信息
+        //     memoryUtils.user = user;
+        //     saveUser(user);
+        //     console.log(memoryUtils.user)
 
-            // 跳转到admin页面
-            this.props.history.replace('/')
+        //     // 跳转到admin页面
+        //     this.props.history.replace('/')
 
-        }else{
-            // 登录失败
-            message.error(result.msg)
-        }
+        // }else{
+        //     // 登录失败
+        //     message.error(result.msg)
+        // }
+
+        // redux版本
+        this.props.login(username,password);
+        
 
     };
 
@@ -62,15 +67,33 @@ export default class Login extends Component {
         密码:admin
         `)
     }
-
-    render() {
+    
+    isLogin(){
         // 判断用户是否登录，如登录则跳转到admin界面
-        const user = memoryUtils.user
+        const user = this.props.user
+        console.log(user)
+        console.log(this.props.history)
         if(user&&user._id){
-            message.success('当前已登录')
-            return <Redirect to='/`'/>
+            message.success('登录成功')
+            this.props.history.push('/')
             
         }
+        // 根据redux的user判断是否登录成功
+        if(user.msg){
+            message.error(user.msg)
+            console.log(user.msg)
+        }
+    }
+
+    componentDidMount(){
+        this.isLogin();
+    }
+
+    
+    componentDidUpdate(){
+        this.isLogin()
+    }
+    render() {
         return (
             <div className = 'login-bg'>
                 <header></header>
@@ -180,3 +203,10 @@ export default class Login extends Component {
         )
     }
 }
+
+export default connect(
+    state=>({user:state.user}),
+    {
+        login
+    }
+)(Login)

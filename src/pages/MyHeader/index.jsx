@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import {Badge,Avatar,Tabs,Modal,Button} from 'antd'
-import memoryUtils from '../../utils/memoryUtils'
-import {deleteUser,saveTagstoStorage,getActiveTagKey,getTagsArr} from '../../utils/storageUtils'
+import {saveTagstoStorage,getActiveTagKey,getTagsArr} from '../../utils/storageUtils'
 import {Link,withRouter} from 'react-router-dom'
 import { UserOutlined,CloseCircleOutlined,ExclamationCircleOutlined } from '@ant-design/icons'
 import PubSub from 'pubsub-js'
 import './index.css'
 import { reqGetWeather } from '../../api'
+import {connect} from 'react-redux'
+import {logout} from '../../redux/actions/user'
 // 退出提示框
 const { confirm } = Modal;
 
@@ -15,7 +16,7 @@ const { confirm } = Modal;
 // 天气
 
 const {TabPane } = Tabs
- class MyHeader extends Component {
+class MyHeader extends Component {
     newTabIndex = 0;
     constructor(props){
         super(props)
@@ -128,9 +129,11 @@ const {TabPane } = Tabs
             //   确认退出
 
             // 清除内容中的用户信息
-            memoryUtils.user ={}
-            // 清除localstore中的用户信息
-            deleteUser()
+            // memoryUtils.user ={}
+
+            // 清除redux中的user
+            this.props.logout();
+            
             // 跳转到Login界面
                 this.props.history.replace('/login')
             },
@@ -175,6 +178,7 @@ const {TabPane } = Tabs
         
         // 获取当前页与
         const { panes, activeKey,weather,time } = this.state;
+        const {user} = this.props;
         let  dayWeather ='未知'
         if (weather.forecasts) {
             dayWeather= weather.forecasts[0].casts[0].dayweather
@@ -194,7 +198,7 @@ const {TabPane } = Tabs
                     </span>
                     
                     {/* 用户名 */}
-                    <span className='header-username'>{memoryUtils.user.username}</span>
+                    <span className='header-username'>{user.username}</span>
                     {/* out */}
                     <span className = 'quite-login'>
                         <Button type="link" onClick = {this.logOut}>退出</Button>
@@ -235,4 +239,9 @@ const {TabPane } = Tabs
     }
 }
 
-export default withRouter(MyHeader);
+export default connect(
+    state=>({user:state.user}),
+    {
+        logout
+    }
+)(withRouter(MyHeader))

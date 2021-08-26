@@ -18,19 +18,20 @@ const getUser=()=>{
 const deleteUser=()=>{
     localStorage.removeItem(USER_KEY)
 }
-// 保存打开过的标签列表于local storage
+
+// 保存打开过的标签列表于session storage
 const saveTagstoStorage = (activeKey,tagsArr)=>{
-    localStorage.setItem(TAG_ACTIVE_KEY,activeKey);
-    localStorage.setItem(TAGS_ARR_KEY,JSON.stringify(tagsArr))
+    sessionStorage.setItem(TAG_ACTIVE_KEY,activeKey);
+    sessionStorage.setItem(TAGS_ARR_KEY,JSON.stringify(tagsArr))
 }
 // 读取 activeKey
 const getActiveTagKey = () => {
-    return localStorage.getItem(TAG_ACTIVE_KEY||'');
+    return sessionStorage.getItem(TAG_ACTIVE_KEY||'');
 }
 
 // 读取tagsarr
 const getTagsArr = () => {
-    return JSON.parse(localStorage.getItem(TAGS_ARR_KEY)||'[]');
+    return JSON.parse(sessionStorage.getItem(TAGS_ARR_KEY)||'[]');
 }
 
 export {
