@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Layout } from 'antd';
 import {Switch,Route,Redirect} from 'react-router-dom'
 import LeftNav from '../LeftNav'
-import memoryUtils from '../../utils/memoryUtils'
 import './index.css'
 // 引入内容展示区域的组件
 import Category from '../Commodity/Category'
@@ -16,9 +15,10 @@ import User from '../User'
 import MyHeader from '../MyHeader'
 import MyFooter from '../MyFooter'
 import NonePage from '../NonePage'
+import {connect} from 'react-redux'
 const { Header, Footer, Sider, Content } = Layout;
 
-export default class Admin extends Component {
+class Admin extends Component {
     state = {
         collapeseType:false,
     }
@@ -33,7 +33,7 @@ export default class Admin extends Component {
     
     render() {
         // 渲染前查看是否登录
-        const user  = memoryUtils.user
+        const user  = this.props.user
         // console.log(user)
         if(!user||!user._id){
             //跳转到登录页面
@@ -66,10 +66,11 @@ export default class Admin extends Component {
 
                     {/* 内容展示区域 */}
                     <Content style={{ margin: '24px 16px 0' }}>
-                        <div className="site-layout-background" style={{ padding: 24, minHeight: 360 ,backgroundColor:'white'}}>
+                        <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
                          
                             {/* 注册路由 */}
                             <Switch>
+                                <Redirect exact from='/' to='/home' />
                                 <Route path='/home' component={Home}/>
                                 <Route path='/commodity/category' component={Category}/>
                                 <Route path='/commodity/product' component={Product}/>
@@ -78,8 +79,8 @@ export default class Admin extends Component {
                                 <Route path='/charts/bar' component={Bar}/>
                                 <Route path='/charts/line' component={Line}/>
                                 <Route path='/charts/pie' component={Pie}/>
-                                <Route path='/none' component={NonePage}/>
-                                <Redirect to='/home' />
+                                <Route  component={NonePage}/> 
+                               
                             </Switch>
 
                         </div>
@@ -94,3 +95,8 @@ export default class Admin extends Component {
         )
     }
 }
+
+export default connect(
+    state=>({user:state.user}),
+    {}
+)(Admin)

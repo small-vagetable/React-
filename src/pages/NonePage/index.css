@@ -4,16 +4,19 @@
     justify-content: center;
     align-items: center;
     height: 65vh;
-    background-color: white;
+    /* background-color: white; */
+    background: url('/src/pages/NonePage/images/404.png') no-repeat ;
+    background-size: cover;
   }
   .spotlight h1 {
     position: relative;
     text-transform: uppercase;
-    color: #35d0a9;
+    /* color: #35d0a9; */
+    color:rgba(0, 0, 0, 0) ;
     font-size: 8rem;
   }
   .spotlight h1::after {
-    content: "No Page";
+    content: "404 NotFound";
     position: absolute;
     top: 0;
     left: 0;

@@ -6,21 +6,20 @@ import {Modal,Form, Input, message,Tree} from 'antd'
 import {reqUpdateRole} from '../../../api'
 import {withRouter} from 'react-router-dom'
 import menuConfig from '../../../config/menuConfig'
-import memoryUtils from '../../../utils/memoryUtils'
-import {deleteUser} from '../../../utils/storageUtils'
+import {connect} from 'react-redux'
+import {logout} from '../../../redux/actions/user'
 const {Item} = Form;
 
 const treeData = menuConfig
  class ConfigRole extends Component {
     constructor(props){
-        // console.log(memoryUtils.user)
         super(props)
         let {menus} = this.props.role
         // console.log(menus)
         this.state = {
             visible:false,
             menus,
-            user:memoryUtils.user
+            user:this.props.user
         }
     }
     
@@ -39,7 +38,7 @@ const treeData = menuConfig
     handleOk =async (e) => {
         const {_id} = this.props.role;
         const {menus} = this.state;
-        const {username} = memoryUtils.user
+        const {username} = this.props.user
         let auth_time = new Date();
         // 发送添加类名请求
         let result =await reqUpdateRole({_id,menus,auth_name:username,auth_time})
@@ -48,7 +47,7 @@ const treeData = menuConfig
             
             // 关闭弹出框
             this.handleCancel()
-            if(memoryUtils.user.role._id !== _id){
+            if(this.props.user.role._id !== _id){
                 // 更新父组件状态
                 message.success('配置成功')
                 this.props.getRoles();
@@ -57,10 +56,7 @@ const treeData = menuConfig
                  // 退出登录
                  message.warning('当前用户的角色权限已更改！请重新登录')
                  // 清除内容中的用户信息
-                 memoryUtils.user ={}
-                 // 清除localstore中的用户信息
-                 deleteUser()
-                 // 跳转到Login界面
+                 this.props.logout();
                  this.props.history.replace('/login')
             }
             
@@ -143,7 +139,12 @@ const treeData = menuConfig
     }
 }
 
-export default withRouter(ConfigRole)
+export default  connect(
+    state=>({user:state.user}),
+    {
+        logout
+    }
+)(withRouter(ConfigRole))
 
 
   

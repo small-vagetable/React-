@@ -5,9 +5,9 @@ import PubSub from 'pubsub-js'
 // import {FlagFilled, UserOutlined} from '@ant-design/icons';
 import bgimg from '../../assets/images/glBg.jpg'
 import './index.css'
+import {connect} from 'react-redux'
 // 导入Menu配置文件
 import menuConfig from '../../config/menuConfig'
-import memoryUtils from '../../utils/memoryUtils'
 // 引入多级菜单
 const { SubMenu } = Menu;
 class LeftNav extends Component {
@@ -43,7 +43,7 @@ class LeftNav extends Component {
     }
     //获取目录列表的Node
     getMenuList = (menuConfig) => {
-        const {user} = memoryUtils;
+        const {user} = this.props;
           return  menuConfig.map((item) => {
 
               let hasMenu = this.checkUserMenu(item,user)
@@ -137,4 +137,9 @@ class LeftNav extends Component {
         )
     }
 }
-export default withRouter(LeftNav ) 
+export default connect(
+    state=>({user:state.user}),
+    {
+
+    }
+)(withRouter(LeftNav ))
